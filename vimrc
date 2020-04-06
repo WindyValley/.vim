@@ -4,6 +4,8 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+autocmd VimEnter * highlight clear SignColumn
+
 "一些外观上的修改set formatoptions-=tc
 set number
 set relativenumber
