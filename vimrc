@@ -1,3 +1,9 @@
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim     
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 "一些外观上的修改set formatoptions-=tc
 set number
 set relativenumber
@@ -213,3 +219,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" List item yankked
+nnoremap <silent> <space>y :CocList -A --normal yank<cr> 
+" Mappings using coc-translator
+nmap ts <Plug>(coc-translator-p) 
+" Mappings using coc-explorer
+nmap te :CocCommand explorer <CR>
