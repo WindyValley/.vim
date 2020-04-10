@@ -83,9 +83,11 @@ augroup END
 autocmd FileType make set noexpandtab
 
 
-"自定义按键绑定
-" VISUAL模式下绑定Ctrl+C为复制到系统剪贴板
-vnoremap <C-c> "+y
+" Custom Key Mapping
+nnoremap <leader><leader>n :tabn<CR>
+nnoremap <leader><leader>p :tabp<CR>
+nnoremap <leader><leader>c :tabnew<CR>
+nnoremap <leader><leader>d :tabclose<CR>
 
 
 
@@ -100,7 +102,7 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-todolist']
+let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-vimlsp', 'coc-yank', 'coc-gitignore', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
