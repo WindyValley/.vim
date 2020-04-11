@@ -5,13 +5,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 autocmd VimEnter * highlight clear SignColumn
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-"一些外观上的修改set formatoptions-=tc
+"一些外观上的修改
+set formatoptions-=tc
+let $t_ut=''
+set t_Co=256
+color morning
+set colorcolumn=80
 set number
 set relativenumber
 set ruler
 set cursorline
 set cmdheight=2
+set wildmenu
 syntax enable
 syntax on
 
@@ -33,6 +40,7 @@ filetype plugin on
 filetype plugin indent on
 set mouse=a
 set encoding=utf-8
+set lazyredraw
 
 "set clipboard=unnamed "启用系统剪贴板，vim有内置方案可以沟通系统剪贴板，如无必要，可以不启用
 "set paste	"启用粘贴，否则vim会将粘贴视作短时间内的大量输入
@@ -50,12 +58,29 @@ set showcmd
 "Search settings
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 exec "nohlsearch"
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
 call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch':'release'}
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
+
     Plug 'vim-airline/vim-airline'
+
+	Plug 'liuchengxu/vista.vim'
+	Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 
@@ -96,17 +121,8 @@ nnoremap S :w<CR>
 nnoremap R :source $MYVIMRC<CR>
 nnoremap Q :q<CR>
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
+""" config for coc.nvim{{{
 let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-todolist']
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -235,3 +251,25 @@ nnoremap <silent> <space>y :CocList -A --normal yank<cr>
 nmap ts <Plug>(coc-translator-p) 
 " Mappings using coc-explorer
 nmap te :CocCommand explorer <CR>
+
+""" end of config for coc.nvim}}}
+
+
+
+""" config for Vista.vim{{{
+noremap <c-t> :silent! Vista finder coc<CR>
+noremap <c-l> :Vista!!<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+ \   "function": "\uf794",
+ \   "variable": "\uf71b",
+ \  }
+function! NearestMethodOrFunction() abort
+	return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+""" end of config of Vista.vim}}}
