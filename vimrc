@@ -4,7 +4,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-if !empty(glob('~/.vim/_machine_different.vim'))
+if !empty(glob('~/.vim/_machine_different.vim/universal.vim'))
 	source ~/.vim/_machine_different.vim/universal.vim
 endif
 
@@ -126,7 +126,7 @@ nnoremap Q :q<CR>
 
 
 """ config for coc.nvim{{{
-if !empty(glob('~/.vim/_machine_different.vim'))
+if !empty(glob('~/.vim/_machine_different.vim/forcoc.vim'))
 	source ~/.vim/_machine_different.vim/forcoc.vim
 endif
 
