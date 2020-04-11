@@ -4,6 +4,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+if !empty(glob('~/.vim/_machine_different.vim'))
+	source ~/.vim/_machine_different.vim
+endif
+
 autocmd VimEnter * highlight clear SignColumn
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -11,7 +15,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set formatoptions-=tc
 let $t_ut=''
 set t_Co=256
-color morning
 set colorcolumn=80
 set number
 set relativenumber
