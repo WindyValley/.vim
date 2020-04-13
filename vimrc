@@ -81,11 +81,13 @@ call plug#begin('~/.vim/plugged')
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     Plug 'vim-airline/vim-airline'
+	Plug 'connorholyday/vim-snazzy'
 
 	Plug 'liuchengxu/vista.vim'
 	Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
+colorscheme snazzy
 
 " 针对文件格式的设置
 " C/C++ programming helpers
