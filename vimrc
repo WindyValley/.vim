@@ -77,11 +77,14 @@ set shortmess+=c
 set signcolumn=yes
 
 call plug#begin('~/.vim/plugged')
+	if !empty(glob('~/.vim/_machine_different.vim/pluglist.vim'))
+		source ~/.vim/_machine_different.vim/pluglist.vim
+	endif
+
     Plug 'neoclide/coc.nvim', {'branch':'release'}
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     Plug 'vim-airline/vim-airline'
-	Plug 'connorholyday/vim-snazzy'
 
 	Plug 'liuchengxu/vista.vim'
 	Plug 'scrooloose/nerdcommenter'
