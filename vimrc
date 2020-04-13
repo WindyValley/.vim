@@ -15,9 +15,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set formatoptions-=tc
 let $t_ut=''
 set t_Co=256
-if has("termguicolors")
-	set termguicolors
-endif
 set colorcolumn=80
 set number
 set relativenumber
