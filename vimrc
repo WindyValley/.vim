@@ -83,11 +83,14 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {'branch':'release'}
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'scrooloose/nerdcommenter'
+
+	Plug 'mbbill/undotree'
 
     Plug 'vim-airline/vim-airline'
 
 	Plug 'liuchengxu/vista.vim'
-	Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 if !empty(glob('~/.vim/_machine_different.vim/dependonplug.vim'))
@@ -122,7 +125,7 @@ autocmd FileType make set noexpandtab
 " tab operations
 nnoremap <leader>tn :tabn<CR>
 nnoremap <leader>tp :tabp<CR>
-nnoremap <leader>tc :tabnew
+nnoremap <leader>tc :tabnew<space>
 nnoremap <leader>td :tabclose<CR>
 
 " file operations
