@@ -100,7 +100,6 @@ augroup csrc
   au!
   autocmd FileType *      set nocindent smartindent
   autocmd FileType c,cpp  set cindent
-  " autocmd FileType c,cpp  set omnifunc=ccomplete#Complete
 augroup END
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
@@ -123,7 +122,7 @@ autocmd FileType make set noexpandtab
 " tab operations
 nnoremap <leader>tn :tabn<CR>
 nnoremap <leader>tp :tabp<CR>
-nnoremap <leader>tc :tabnew<CR>
+nnoremap <leader>tc :tabnew
 nnoremap <leader>td :tabclose<CR>
 
 " file operations
