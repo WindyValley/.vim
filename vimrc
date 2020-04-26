@@ -80,6 +80,7 @@ call plug#begin('~/.vim/plugged')
 	if !empty(glob('~/.vim/_machine_different.vim/pluglist.vim'))
 		source ~/.vim/_machine_different.vim/pluglist.vim
 	endif
+	Plug 'yianwillis/vimcdoc'
 
     Plug 'neoclide/coc.nvim', {'branch':'release'}
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -89,6 +90,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mbbill/undotree'
 
     Plug 'vim-airline/vim-airline'
+	Plug 'frazrepo/vim-rainbow'
 
 	Plug 'liuchengxu/vista.vim'
 call plug#end()
@@ -268,7 +270,16 @@ nmap te :CocCommand explorer <CR>
 
 """ end of config for coc.nvim}}}
 
+""" config for for vim-rainbow{{{
+let g:rainbow_active = 1
 
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']]  ],
+    \ [ '*.tex' , [['(', ')'], ['\[', '\]']]  ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']]  ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']]  ],
+    \ ]
+""" end of config for vim-rainbow}}}
 
 """ config for Vista.vim{{{
 noremap <c-t> :silent! Vista finder coc<CR>
