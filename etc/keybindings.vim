@@ -67,8 +67,4 @@ map <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
 nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
-" 设置切换Buffer快捷键"
-nnoremap <C-left> :bn<CR>
-nnoremap <C-right> :bp<CR>
-
 " }}}

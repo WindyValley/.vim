@@ -166,8 +166,22 @@ let g:tex_flavor="latex"
 let g:vimtex_compiler_latexmk_engines={'_':'-xelatex'}
 let g:vimtex_compiler_latexrun_engines={'_':'xelatex'}
 
+if has('win32') || has('win64')
+" 阅读器相关的配置 包含正反向查找功能 仅供参考
+let g:vimtex_view_general_viewer = 'H:/SumatraPDF/SumatraPDF.exe'
+let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+let g:vimtex_view_general_options
+\ = '-reuse-instance -forward-search @tex @line @pdf'
+\ . ' -inverse-search "' . exepath(v:progpath)
+\ . ' --servername ' . v:servername
+\ . ' --remote-send \"^<C-\^>^<C-n^>'
+\ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+\ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+\ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+else
 " use zathura as the default pdf reviewer
 let g:vimtex_view_method='zathura'
+endif
 
 " show the compiler hint
 let g:vimtex_quickfix_mode = 1
