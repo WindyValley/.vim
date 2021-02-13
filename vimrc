@@ -36,6 +36,7 @@ endif
     Plug 'junegunn/fzf.vim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
+    Plug 'skywind3000/asyncrun.extra'
     Plug 'denstiny/Terslation'
     Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
     Plug 'voldikss/vim-translator'
@@ -248,9 +249,9 @@ let g:far#enable_undo = 1
 
 """ {{{ config for Asyncrun/AsynxTasks
 au! BufRead,BufNewFile .tasks set ft=dosini
-let g:asyncrun_mode = 'term'
+let g:asyncrun_mode = 'floaterm'
 let g:asyncrun_rootmarkers=['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
-let g:asynctasks_term_pos = 'tab'
+let g:asynctasks_term_pos = 'floaterm'
 let g:asynctasks_extra_config = [
             \ '~/.vim/tasks.ini',
             \ '~/vimfiles/tasks.ini'
@@ -259,5 +260,5 @@ let g:asynctasks_extra_config = [
 nnoremap <silent><F7> :AsyncTask project-build<CR>
 nnoremap <silent><C-F7> :AsyncTask file-build<CR>
 nnoremap <silent><F6> :AsyncTask project-run<CR>
-nnoremap <silent><C-F6> :AsyncTask project-run<CR>
+nnoremap <silent><C-F6> :AsyncTask file-run<CR>
 """ }}}

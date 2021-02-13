@@ -113,15 +113,17 @@ au FileType vim setlocal foldmethod=marker
 
 if has('win32') || has ('win64')
   so ~/vimfiles/etc/win.vim
+  if !empty(glob('~/vimfiles/_machine_different.vim/universal.vim'))
+      source ~/vimfiles/_machine_different.vim/universal.vim
+  endif
 else
   if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall | source $MYVIMRC
   endif
-endif
-
-if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
-    source ~/.config/nvim/_machine_different.vim/universal.vim
+  if !empty(glob('~/.vim/_machine_different.vim/universal.vim'))
+      source ~/.vim/_machine_different.vim/universal.vim
+  endif
 endif
 
