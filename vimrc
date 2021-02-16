@@ -20,7 +20,7 @@ endif
     Plug 'jiangmiao/auto-pairs'
     Plug 'tyru/caw.vim'
     Plug 'tpope/vim-surround'
-    Plug 'lervag/vimtex', {'for': 'tex'}
+    Plug 'lervag/vimtex', {'for': ['tex']}
     Plug 'honza/vim-snippets'
     Plug 'gcmt/wildfire.vim'
     Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo']  }
@@ -28,18 +28,16 @@ endif
     """ Functional integrations
     Plug 'mbbill/undotree'
     Plug 'liuchengxu/vista.vim'
-    Plug 'mhinz/vim-startify'
     Plug 'voldikss/vim-floaterm'
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
-    Plug 'junegunn/fzf.vim'
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+    Plug 'glepnir/dashboard-nvim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
-    Plug 'denstiny/Terslation'
-    Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
     Plug 'voldikss/vim-translator'
+    Plug 'dstein64/vim-startuptime'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
@@ -74,12 +72,12 @@ let g:vista#renderer#icons = {
 
 """{{{ config for startify
 
-let g:startify_custom_header =
-        \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
-let g:startify_bookmarks=[
-    \ {'wrc': '~/vimfiles/vimrc'},
-    \ {'rc': '~/.vim/vimrc'}
-    \ ]
+" let g:startify_custom_header =
+"        \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
+" let g:startify_bookmarks=[
+"    \ {'wrc': '~/vimfiles/vimrc'},
+"    \ {'rc': '~/.vim/vimrc'}
+"    \ ]
 
 """end of config for startify }}}
 
@@ -233,8 +231,6 @@ let g:wildfire_objects = {
 """}}}
 
 """{{{ keymap with fzf.vim
-nnoremap <silent> <space>lb :Buffers<CR>
-nnoremap <silent> <space>lh :History<CR>
 """}}}
 
 """{{{ config for UndoTree
@@ -261,4 +257,52 @@ nnoremap <silent><F7> :AsyncTask project-build<CR>
 nnoremap <silent><C-F7> :AsyncTask file-build<CR>
 nnoremap <silent><F6> :AsyncTask project-run<CR>
 nnoremap <silent><C-F6> :AsyncTask file-run<CR>
+""" }}}
+
+""" config for dashboard-nvim {{{
+let g:dashboard_custom_header = [
+      \'             ▄▄▀▀▀▀▀▀▀▀▄▄              ',
+      \'          ▄▀▀            ▀▄▄           ',
+      \'        ▄▀                  ▀▄         ',
+      \'       ▌             ▀▄       ▀▀▄      ',
+      \'      ▌                ▀▌        ▌     ',
+      \'     ▐                  ▌        ▐     ',
+      \'     ▌▐    ▐    ▐       ▌         ▌    ',
+      \'    ▐ ▌    ▌  ▐ ▌      ▐       ▌▐ ▐    ',
+      \'    ▐ ▌    ▌▄▄▀▀▌▌     ▐▀▌▀▌▄  ▐ ▌ ▌   ',
+      \'     ▌▌    ▐▀▄▌▌▐▐    ▐▐▐ ▐ ▌▌ ▐ ▌▄▐   ',
+      \'   ▄▀▄▐    ▌▌▄▀▄▐ ▌▌ ▐ ▌▄▀▄ ▐  ▐ ▌ ▀▄  ',
+      \'  ▀▄▀  ▌  ▄▀ ▌█▐  ▐▐▀   ▌█▐ ▀▄▐ ▌▌   ▀ ',
+      \'   ▀▀▄▄▐ ▀▄▀ ▀▄▀        ▀▄▀▄▀ ▌ ▐      ',
+      \'      ▀▐▀▄ ▀▄        ▐      ▀▌▐        ',
+      \'        ▌ ▌▐ ▀              ▐ ▐        ',
+      \'        ▐ ▐ ▌    ▄▄▀▀▀▀▄    ▌ ▐        ',
+      \'         ▌▐ ▐▄   ▐     ▌  ▄▀  ▐        ',
+      \'        ▐  ▌▐▐▀▄  ▀▄▄▄▀ ▄▀▐   ▐        ',
+      \'        ▌▌ ▌▐ ▌ ▀▄▄    ▄▌▐ ▌  ▐        ',
+      \'       ▐ ▐ ▐▐ ▌    ▀▀▄▀▌▐  ▌  ▌        ',
+      \'       ▌  ▌▐ ▌        ▐▀▄▌ ▐           ',
+      \]
+nmap <space>ss :<C-u>SessionSave<CR>
+nmap <space>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <space>lh :DashboardFindHistory<CR>
+nnoremap <silent> <space>lf :DashboardFindFile<CR>
+nnoremap <silent> <space>cc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <space>lw :DashboardFindWord<CR>
+nnoremap <silent> <space>lm :DashboardJumpMark<CR>
+nnoremap <silent> <space>nf :DashboardNewFile<CR>
+let g:dashboard_custom_shortcut={
+      \ 'last_session'       : 'SPC s l',
+      \ 'find_history'       : 'SPC l h',
+      \ 'find_file'          : 'SPC l f',
+      \ 'new_file'           : 'SPC n f',
+      \ 'change_colorscheme' : 'SPC c c',
+      \ 'find_word'          : 'SPC l a',
+      \ 'book_marks'         : 'SPC l m',
+      \ }
+""" }}}
+
+""" config for vim-clap {{{
+nnoremap <silent> <space>lb :Clap buffers<CR>
+nnoremap <silent> <space>ly :Clap yanks<CR>
 """ }}}

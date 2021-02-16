@@ -140,8 +140,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>lp  :<C-u>CocListResume<CR>
-" List item yankked
-nnoremap <silent> <space>ly :CocList -A --normal yank<CR>
 " List float terms
 nnoremap <silent> <space>lt :CocList floaterm<CR>
 " Mappings using coc-explorer

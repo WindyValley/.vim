@@ -6,12 +6,6 @@ if empty(glob(expand('~').'\vimfiles\autoload\plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" vim 文件折叠方式为 marker
-augroup ft_vim
-    au!
-
-    
-augroup END
 " }}}
 
 " General {{{

@@ -20,7 +20,8 @@ noremap <M-c> :nohlsearch<CR>
 nnoremap <M-]> zR
 nnoremap <M-[> zM
 
-nmap <leader>s :source $MYVIMRC<cr>
+" reload configs
+nmap <leader>r :source $MYVIMRC<cr>
 nmap <leader>e :e $MYVIMRC<cr>
 nmap S :w<cr>
 nmap Q :q<cr>
