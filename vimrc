@@ -1,12 +1,15 @@
+if has('win32') || has('win64')
 source ~/vimfiles/etc/universal.vim
 source ~/vimfiles/etc/keybindings.vim
 
-if has('win32') || has('win64')
 call plug#begin('~/vimfiles/plugged')
     if !empty(glob('~/vimfiles/_machine_different.vim/pluglist.vim'))
         source ~/vimfiles/_machine_different.vim/pluglist.vim
     endif
 else
+source ~/.vim/etc/universal.vim
+source ~/.vim/etc/keybindings.vim
+
 call plug#begin('~/.vim/plugged')
     if !empty(glob('~/.vim/_machine_different.vim/pluglist.vim'))
         source ~/.vim/_machine_different.vim/pluglist.vim
