@@ -1,16 +1,16 @@
 if has('win32') || has('win64')
-source ~/vimfiles/etc/universal.vim
-source ~/vimfiles/etc/keybindings.vim
+    source ~/vimfiles/etc/universal.vim
+    source ~/vimfiles/etc/keybindings.vim
 
-call plug#begin('~/vimfiles/plugged')
-    if !empty(glob('~/vimfiles/_machine_different.vim/pluglist.vim'))
-        source ~/vimfiles/_machine_different.vim/pluglist.vim
-    endif
+    call plug#begin('~/vimfiles/plugged')
+        if !empty(glob('~/vimfiles/_machine_different.vim/pluglist.vim'))
+            source ~/vimfiles/_machine_different.vim/pluglist.vim
+        endif
 else
-source ~/.vim/etc/universal.vim
-source ~/.vim/etc/keybindings.vim
+    source ~/.vim/etc/universal.vim
+    source ~/.vim/etc/keybindings.vim
 
-call plug#begin('~/.vim/plugged')
+    call plug#begin('~/.vim/plugged')
     if !empty(glob('~/.vim/_machine_different.vim/pluglist.vim'))
         source ~/.vim/_machine_different.vim/pluglist.vim
     endif
@@ -46,7 +46,9 @@ endif
     Plug 'vim-airline/vim-airline'
     Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
     Plug 'sheerun/vim-polyglot'
-call plug#end()
+
+    call plug#end()
+
 if has('win32') || has('win32')
   if !empty(glob('~/vimfiles/_machine_different.vim/dependonplug.vim'))
     source ~/vimfiles/_machine_different.vim/dependonplug.vim
@@ -73,17 +75,6 @@ let g:vista#renderer#icons = {
  \  }
 """ end of config for Vista.vim}}}
 
-"""{{{ config for startify
-
-" let g:startify_custom_header =
-"        \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
-" let g:startify_bookmarks=[
-"    \ {'wrc': '~/vimfiles/vimrc'},
-"    \ {'rc': '~/.vim/vimrc'}
-"    \ ]
-
-"""end of config for startify }}}
-
 """{{{ config with Floaterm
 let g:floaterm_keymap_new    = '<space>fc'
 let g:floaterm_keymap_prev   = '<space>fp'
@@ -95,18 +86,6 @@ nnoremap <space>fr :Ranger<CR>
 tnoremap fr <C-\><C-n>:Ranger<CR>
 
 """end of config with Floaterm}}}
-
-"""{{{ config for ale
-"自定义error和warning图标
-let g:ale_disable_lsp=1
-
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"""}}}
 
 """{{{ config for lines(bufferline & airline)
 if !exists('g:airline_symbols')
@@ -300,7 +279,7 @@ let g:dashboard_custom_shortcut={
       \ 'find_file'          : 'SPC l f',
       \ 'new_file'           : 'SPC n f',
       \ 'change_colorscheme' : 'SPC c c',
-      \ 'find_word'          : 'SPC l a',
+      \ 'find_word'          : 'SPC l w',
       \ 'book_marks'         : 'SPC l m',
       \ }
 """ }}}
