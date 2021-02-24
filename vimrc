@@ -27,6 +27,7 @@ endif
     Plug 'honza/vim-snippets'
     Plug 'gcmt/wildfire.vim'
     Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo']  }
+    Plug 'junegunn/vim-easy-align'
 
     """ Functional integrations
     Plug 'mbbill/undotree'
@@ -287,4 +288,9 @@ let g:dashboard_custom_shortcut={
 """ config for vim-clap {{{
 nnoremap <silent> <space>lb :Clap buffers<CR>
 nnoremap <silent> <space>ly :Clap yanks<CR>
+""" }}}
+
+""" config for vim-easy-align {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 """ }}}
