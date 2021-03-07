@@ -31,7 +31,6 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
     Plug 'voldikss/vim-translator'
-    Plug 'dstein64/vim-startuptime'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'

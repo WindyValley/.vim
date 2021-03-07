@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
             \'coc-snippets',
             \'coc-stylelint',
             \'coc-todolist',
+            \'coc-toml',
             \'coc-vimlsp',
             \'coc-vimtex',
             \'coc-yank'

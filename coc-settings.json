@@ -51,6 +51,11 @@
             "javascript"
         ]
     },
+    "toml.schema.associations": {
+        "^(.*(/|\\\\)\\.?taplo\\.toml|\\.?taplo\\.toml)$": "taplo://taplo.toml",
+        "^(.*(/|\\\\)Cargo\\.toml|Cargo\\.toml)$": "https://taplo.tamasfe.dev/schemas/cargo.toml.json",
+        "^(.*(/|\\\\)\\.*dein.*\\.toml|\\.*dein.*\\.toml)$)": "https://taplo.tamasfe.dev/schemas/dein.toml.json"
+    },
     "languageserver": {
         "cmake": {
             "command": "cmake-language-server",
