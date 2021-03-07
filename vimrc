@@ -30,6 +30,7 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
+    Plug 'preservim/vimux'
     Plug 'voldikss/vim-translator'
 
     """ make it colorful
