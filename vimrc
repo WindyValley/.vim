@@ -1,20 +1,10 @@
-if has('win32') || has('win64')
-    source ~/vimfiles/etc/universal.vim
-    source ~/vimfiles/etc/keybindings.vim
-
-    call plug#begin('~/vimfiles/plugged')
-        if !empty(glob('~/vimfiles/_machine_different.vim/pluglist.vim'))
-            source ~/vimfiles/_machine_different.vim/pluglist.vim
-        endif
-else
-    source ~/.vim/etc/universal.vim
-    source ~/.vim/etc/keybindings.vim
-
-    call plug#begin('~/.vim/plugged')
-    if !empty(glob('~/.vim/_machine_different.vim/pluglist.vim'))
-        source ~/.vim/_machine_different.vim/pluglist.vim
+let g:vim_config_prefix = fnamemodify(expand('$MYVIMRC'), ':p:h')
+execute 'so '.g:vim_config_prefix.'/etc/universal.vim'
+execute 'so '.g:vim_config_prefix.'/etc/keybindings.vim'
+call plug#begin(g:vim_config_prefix.'/plugged')
+    if !empty(g:vim_config_prefix.'/_machine_different.vim/pluglist.vim')
+        execute 'so '.g:vim_config_prefix.'/_machine_different.vim/pluglist.vim'
     endif
-endif
     Plug 'yianwillis/vimcdoc'
 
     """ make me edit easy
@@ -48,20 +38,12 @@ endif
     Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
     Plug 'sheerun/vim-polyglot'
 
-    call plug#end()
+call plug#end()
 
-if has('win32') || has('win32')
-  if !empty(glob('~/vimfiles/_machine_different.vim/dependonplug.vim'))
-    source ~/vimfiles/_machine_different.vim/dependonplug.vim
-    so ~/vimfiles/etc/coc.vim
-  endif
-else
-  if !empty(glob('~/.vim/_machine_different.vim/dependonplug.vim'))
-    source ~/.vim/_machine_different.vim/dependonplug.vim
-    so ~/.vim/etc/coc.vim
-  endif
+if !empty(g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim')
+    execute 'so '.g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim'
 endif
-
+execute 'so '.g:vim_config_prefix.'/etc/coc.vim'
 
 """ config for Vista.vim{{{
 noremap <c-t> :silent! Vista finder coc<CR>
@@ -232,8 +214,7 @@ let g:asyncrun_mode = 'floaterm'
 let g:asyncrun_rootmarkers=['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
 let g:asynctasks_term_pos = 'floaterm'
 let g:asynctasks_extra_config = [
-            \ '~/.vim/tasks.ini',
-            \ '~/vimfiles/tasks.ini'
+            \ g:vim_config_prefix.'/tasks.ini',
             \]
 
 nnoremap <silent><F7> :AsyncTask project-build<CR>
