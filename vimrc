@@ -32,6 +32,7 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'skywind3000/asyncrun.extra'
     Plug 'preservim/vimux'
     Plug 'voldikss/vim-translator'
+    Plug 'tommcdo/vim-exchange'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
@@ -224,29 +225,6 @@ nnoremap <silent><C-F6> :AsyncTask file-run<CR>
 """ }}}
 
 """ config for dashboard-nvim {{{
-let g:dashboard_custom_header = [
-      \'             ▄▄▀▀▀▀▀▀▀▀▄▄              ',
-      \'          ▄▀▀            ▀▄▄           ',
-      \'        ▄▀                  ▀▄         ',
-      \'       ▌             ▀▄       ▀▀▄      ',
-      \'      ▌                ▀▌        ▌     ',
-      \'     ▐                  ▌        ▐     ',
-      \'     ▌▐    ▐    ▐       ▌         ▌    ',
-      \'    ▐ ▌    ▌  ▐ ▌      ▐       ▌▐ ▐    ',
-      \'    ▐ ▌    ▌▄▄▀▀▌▌     ▐▀▌▀▌▄  ▐ ▌ ▌   ',
-      \'     ▌▌    ▐▀▄▌▌▐▐    ▐▐▐ ▐ ▌▌ ▐ ▌▄▐   ',
-      \'   ▄▀▄▐    ▌▌▄▀▄▐ ▌▌ ▐ ▌▄▀▄ ▐  ▐ ▌ ▀▄  ',
-      \'  ▀▄▀  ▌  ▄▀ ▌█▐  ▐▐▀   ▌█▐ ▀▄▐ ▌▌   ▀ ',
-      \'   ▀▀▄▄▐ ▀▄▀ ▀▄▀        ▀▄▀▄▀ ▌ ▐      ',
-      \'      ▀▐▀▄ ▀▄        ▐      ▀▌▐        ',
-      \'        ▌ ▌▐ ▀              ▐ ▐        ',
-      \'        ▐ ▐ ▌    ▄▄▀▀▀▀▄    ▌ ▐        ',
-      \'         ▌▐ ▐▄   ▐     ▌  ▄▀  ▐        ',
-      \'        ▐  ▌▐▐▀▄  ▀▄▄▄▀ ▄▀▐   ▐        ',
-      \'        ▌▌ ▌▐ ▌ ▀▄▄    ▄▌▐ ▌  ▐        ',
-      \'       ▐ ▐ ▐▐ ▌    ▀▀▄▀▌▐  ▌  ▌        ',
-      \'       ▌  ▌▐ ▌        ▐▀▄▌ ▐           ',
-      \]
 nmap <space>ss :<C-u>SessionSave<CR>
 nmap <space>sl :<C-u>SessionLoad<CR>
 nnoremap <silent> <space>lh :DashboardFindHistory<CR>
