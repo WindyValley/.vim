@@ -37,7 +37,6 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     """ make it colorful
     Plug 'vim-airline/vim-airline'
     Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
-    Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
