@@ -26,23 +26,11 @@ nmap <leader>e :e $MYVIMRC<cr>
 nmap S :w<cr>
 nmap Q :q<cr>
 
-" 移动分割窗口
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
 " 正常模式下 alt+j,k,h,l 调整分割窗口大小
 nnoremap <M-j> :resize +5<cr>
 nnoremap <M-k> :resize -5<cr>
 nnoremap <M-h> :vertical resize -5<cr>
 nnoremap <M-l> :vertical resize +5<cr>
-
-" 插入模式移动光标 alt + 方向键
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <left>
-inoremap <M-l> <Right>
 
 " IDE like delete
 inoremap <C-BS> <Esc>bdei

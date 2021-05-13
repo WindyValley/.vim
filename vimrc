@@ -33,6 +33,7 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'preservim/vimux'
     Plug 'voldikss/vim-translator'
     Plug 'tommcdo/vim-exchange'
+    Plug 't9md/vim-choosewin'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
@@ -64,10 +65,6 @@ let g:floaterm_keymap_prev   = '<space>fp'
 let g:floaterm_keymap_next   = '<space>fn'
 let g:floaterm_keymap_toggle = '<space>ft'
 let g:floaterm_position      = 'center'
-command! Ranger FloatermNew --autoclose=1 ranger
-nnoremap <space>fr :Ranger<CR>
-tnoremap fr <C-\><C-n>:Ranger<CR>
-
 """end of config with Floaterm}}}
 
 """{{{ config for lines(bufferline & airline)
@@ -120,8 +117,9 @@ nmap <silent> <space>tx <Plug>TranslateX
 """end of config for translators}}}
 
 """{{{ config for whick-key
-nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
+nnoremap <silent> <space>  :<c-u>WhichKey '<space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
+nnoremap <silent> \        :<c-u>WhichKey '\'<CR>
 """end of config for which-key}}}
 
 """{{{ config for vimtex
@@ -195,12 +193,9 @@ let g:wildfire_objects = {
     \}
 """}}}
 
-"""{{{ keymap with fzf.vim
-"""}}}
-
 """{{{ config for UndoTree
 let g:undotree_WindowLayout='Layout 2'
-nnoremap <M-u> :UndotreeShow<CR>:UndotreeFocus<CR>
+nnoremap <C-u> :UndotreeShow<CR>:UndotreeFocus<CR>
 """}}}
 
 """ {{{ config for far
@@ -252,3 +247,7 @@ nnoremap <silent> <space>ly :Clap yanks<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """ }}}
+
+""" config for vim-choosewin
+nmap - <Plug>(choosewin)
+"""
