@@ -46,7 +46,7 @@ if !empty(g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim')
 endif
 execute 'so '.g:vim_config_prefix.'/etc/coc.vim'
 
-""" config for Vista.vim{{{
+""" {{{ config for Vista.vim
 noremap <c-t> :silent! Vista finder coc<CR>
 noremap <c-l> :Vista!!<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
@@ -218,7 +218,7 @@ nnoremap <silent><F6> :AsyncTask project-run<CR>
 nnoremap <silent><C-F6> :AsyncTask file-run<CR>
 """ }}}
 
-""" config for dashboard-nvim {{{
+""" {{{ config for dashboard-nvim
 nmap <space>ss :<C-u>SessionSave<CR>
 nmap <space>sl :<C-u>SessionLoad<CR>
 nnoremap <silent> <space>lh :DashboardFindHistory<CR>
@@ -238,16 +238,16 @@ let g:dashboard_custom_shortcut={
       \ }
 """ }}}
 
-""" config for vim-clap {{{
+""" {{{ config for vim-clap
 nnoremap <silent> <space>lb :Clap buffers<CR>
 nnoremap <silent> <space>ly :Clap yanks<CR>
 """ }}}
 
-""" config for vim-easy-align {{{
+""" {{{ config for vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """ }}}
 
-""" config for vim-choosewin
+""" {{{ config for vim-choosewin
 nmap - <Plug>(choosewin)
-"""
+""" }}}
