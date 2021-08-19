@@ -1,8 +1,9 @@
 let g:vim_config_prefix = fnamemodify(expand('$MYVIMRC'), ':p:h')
 execute 'so '.g:vim_config_prefix.'/etc/universal.vim'
 execute 'so '.g:vim_config_prefix.'/etc/keybindings.vim'
+let g:plug_url_format='git@github.com:%s'
 call plug#begin(g:vim_config_prefix.'/plugged')
-    if !empty(g:vim_config_prefix.'/_machine_different.vim/pluglist.vim')
+    if !empty(glob(g:vim_config_prefix.'/_machine_different.vim/pluglist.vim'))
         execute 'so '.g:vim_config_prefix.'/_machine_different.vim/pluglist.vim'
     endif
     Plug 'yianwillis/vimcdoc'
@@ -26,11 +27,13 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'glepnir/dashboard-nvim'
+    Plug 'WindyValley/dashboard-nvim' " 截至2021年8月19日，作者依旧没有合并我们的PR，先用我自己修复的版本
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
-    Plug 'preservim/vimux'
+    if executable('tmux')
+        Plug 'preservim/vimux'
+    endif
     Plug 'voldikss/vim-translator'
     Plug 'tommcdo/vim-exchange'
     Plug 't9md/vim-choosewin'
@@ -41,7 +44,7 @@ call plug#begin(g:vim_config_prefix.'/plugged')
 
 call plug#end()
 
-if !empty(g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim')
+if !empty(glob(g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim'))
     execute 'so '.g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim'
 endif
 execute 'so '.g:vim_config_prefix.'/etc/coc.vim'

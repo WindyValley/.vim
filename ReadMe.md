@@ -1,0 +1,12 @@
+- 几个注意点
+    - 不同设备有差异的配置需要放在\_machine_different.vim文件夹，具体文件名看配置文件内容，在\_default.vim中有一份默认配置，需要手动拷贝
+    - 补全是用的coc.nvim，默认开启所以需要安装nodejs，coc的插件列表在上面说的文件夹里配，可以根据需要调整
+    - windows和linux的差异性配置，用vim提供的检测机制分开写的，应该没什么问题
+    - 模糊查找用的vim-clap，fzf在gvim下有点不正常
+    - 加了vimtex插件，PDF结果预览用的SumatraPDF，路径是写死的，这部分不用可以删掉，需要的话路径需要改一下
+    - 不依赖插件的按键映射在keybindings.vim里
+    - 不依赖插件的配置在universal.vim里
+    - windows的特殊配置在win.vim
+    - 插件配置基本都在vimrc，除了coc的配置因为太多放在coc.vim了
+    - gvim的字体用的DejaVuSansMono NF，根据需要安装或者替换
+    - 想到的就这么多

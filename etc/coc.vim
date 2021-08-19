@@ -1,12 +1,6 @@
 """ config for coc.nvim{{{
-if has('win32') || has('win32')
-  if !empty(glob('~/vimfiles/_machine_different.vim/forcoc.vim'))
-    source ~/vimfiles/_machine_different.vim/forcoc.vim
-  endif
-else
-  if !empty(glob('~/.vim/_machine_different.vim/forcoc.vim'))
-    source ~/.vim/_machine_different.vim/forcoc.vim
-  endif
+if !empty(glob(g:vim_config_prefix.'/_machine_different.vim/forcoc.vim'))
+    exec 'source '.g:vim_config_prefix.'/_machine_different.vim/forcoc.vim'
 endif
 
 " Use tab for trigger completion with characters ahead and navigate.
