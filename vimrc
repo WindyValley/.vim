@@ -1,14 +1,15 @@
-let g:vim_config_prefix = fnamemodify(expand('$MYVIMRC'), ':p:h')
-execute 'so '.g:vim_config_prefix.'/etc/universal.vim'
-execute 'so '.g:vim_config_prefix.'/etc/keybindings.vim'
-let g:plug_url_format='git@github.com:%s'
-call plug#begin(g:vim_config_prefix.'/plugged')
-    if !empty(glob(g:vim_config_prefix.'/_machine_different.vim/pluglist.vim'))
-        execute 'so '.g:vim_config_prefix.'/_machine_different.vim/pluglist.vim'
+vim9script noclear
+g:vim_config_prefix = fnamemodify(expand('$MYVIMRC'), ':p:h')
+execute 'so ' .. g:vim_config_prefix .. '/etc/universal.vim'
+execute 'so ' .. g:vim_config_prefix .. '/etc/keybindings.vim'
+g:plug_url_format = 'git@github.com:%s'
+plug#begin(g:vim_config_prefix .. '/plugged')
+    if !empty(glob(g:vim_config_prefix .. '/_machine_different.vim/pluglist.vim'))
+        execute 'so ' .. g:vim_config_prefix .. '/_machine_different.vim/pluglist.vim'
     endif
     Plug 'yianwillis/vimcdoc'
 
-    """ make me edit easy
+    ### make me edit easy
     Plug 'neoclide/coc.nvim', {'branch':'release'}
     Plug 'fatih/vim-go', {'for': ['go', 'vim-plug'], 'tag': '*'}
     Plug 'jiangmiao/auto-pairs'
@@ -20,17 +21,18 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo']  }
     Plug 'junegunn/vim-easy-align'
 
-    """ Functional integrations
+    ### Functional integrations
     Plug 'mbbill/undotree'
     Plug 'liuchengxu/vista.vim'
     Plug 'voldikss/vim-floaterm'
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'WindyValley/dashboard-nvim' " 截至2021年8月19日，作者依旧没有合并我们的PR，先用我自己修复的版本
+    Plug 'WindyValley/dashboard-nvim', {'branch': 'block-packer-nvim-for-vim'} # 2022年5月9日，作者回来合PR的时候我的代码冲突了，没能合进去，fork版本已更新，继续用自己的fork吧
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
+    Plug 'skywind3000/vim-quickui'
     if executable('tmux')
         Plug 'preservim/vimux'
     endif
@@ -38,190 +40,189 @@ call plug#begin(g:vim_config_prefix.'/plugged')
     Plug 'tommcdo/vim-exchange'
     Plug 't9md/vim-choosewin'
 
-    """ make it colorful
+    ### make it colorful
     Plug 'vim-airline/vim-airline'
     Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
 
-call plug#end()
+plug#end()
 
-if !empty(glob(g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim'))
-    execute 'so '.g:vim_config_prefix.'/_machine_different.vim/dependonplug.vim'
+if !empty(glob(g:vim_config_prefix .. '/_machine_different.vim/dependonplug.vim'))
+    execute 'so ' .. g:vim_config_prefix .. '/_machine_different.vim/dependonplug.vim'
 endif
-execute 'so '.g:vim_config_prefix.'/etc/coc.vim'
+execute 'so ' .. g:vim_config_prefix .. '/etc/coc.vim'
 
-""" {{{ config for Vista.vim
+### {{{ config for Vista.vim
 noremap <c-t> :silent! Vista finder coc<CR>
 noremap <c-l> :Vista!!<CR>
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'coc'
-let g:vista_fzf_preview = ['right:50%']
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
+g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+g:vista_default_executive = 'coc'
+g:vista_fzf_preview = ['right:50%']
+g:vista#renderer#enable_icon = 1
+g:vista#renderer#icons = {
  \   "function": "\uf794",
  \   "variable": "\uf71b",
  \  }
-""" end of config for Vista.vim}}}
+### end of config for Vista.vim}}}
 
-"""{{{ config with Floaterm
-let g:floaterm_keymap_new    = '<space>fc'
-let g:floaterm_keymap_prev   = '<space>fp'
-let g:floaterm_keymap_next   = '<space>fn'
-let g:floaterm_keymap_toggle = '<space>ft'
-let g:floaterm_position      = 'center'
-"""end of config with Floaterm}}}
+###{{{ config with Floaterm
+g:floaterm_keymap_new    = '<space>fc'
+g:floaterm_keymap_prev   = '<space>fp'
+g:floaterm_keymap_next   = '<space>fn'
+g:floaterm_keymap_toggle = '<space>ft'
+g:floaterm_position      = 'center'
+###end of config with Floaterm}}}
 
-"""{{{ config for lines(bufferline & airline)
+###{{{ config for lines(bufferline & airline)
 if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
+   g:airline_symbols = {}
 endif
 
-let g:airline_section_b = airline#section#create(['%{get(b:,''coc_git_status'','''')}','%{get(g:,''coc_git_status'','''')}'])
+g:airline_section_b = airline#section#create(['%{get(b:,''coc_git_status'','''')}', '%{get(g:,''coc_git_status'','''')}'])
 
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#coc#error_symbol = '✘'
-let g:airline#extensions#coc#warning_symbol = '⚡'
-let g:airline#extensions#coc#open_lnum_symbol = '[:'
-let g:airline#extensions#coc#close_lnum_symbol = '] '
+g:airline#extensions#coc#enabled = 1
+g:airline#extensions#coc#error_symbol = '✘'
+g:airline#extensions#coc#warning_symbol = '⚡'
+g:airline#extensions#coc#open_lnum_symbol = '[:'
+g:airline#extensions#coc#close_lnum_symbol = '] '
 
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#right_alt_sep=''
-let g:airline#extensions#tabline#right_sep=''
-let g:airline#extensions#tabline#left_alt_sep=''
-let g:airline#extensions#tabline#left_sep=''
+g:airline#extensions#tabline#enabled = 1
+g:airline#extensions#tabline#right_alt_sep = ''
+g:airline#extensions#tabline#right_sep = ''
+g:airline#extensions#tabline#left_alt_sep = ''
+g:airline#extensions#tabline#left_sep = ''
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.dirty='⚡'
-"""}}}
+g:airline_left_sep = ''
+g:airline_left_alt_sep = ''
+g:airline_right_sep = ''
+g:airline_right_alt_sep = ''
+g:airline_symbols.branch = ''
+g:airline_symbols.readonly = ''
+g:airline_symbols.linenr = '¶'
+g:airline_symbols.maxlinenr = ''
+g:airline_symbols.dirty = '⚡'
+###}}}
 
-"""{{{config for translators
-let g:TerslationFloatWin=1
+###{{{config for translators
+g:TerslationFloatWin = 1
 
-" Echo translation in the cmdline
+# Echo translation in the cmdline
 nmap <silent> <space>ts <Plug>Translate
 vmap <silent> <space>ts <Plug>TranslateV
 
-" Display translation in a window
+# Display translation in a window
 nmap <silent> <space>tw <Plug>TranslateW
 vmap <silent> <space>tw <Plug>TranslateWV
 
-" Replace the text with translation
+# Replace the text with translation
 nmap <silent> <space>tr <Plug>TranslateR
 vmap <silent> <space>tr <Plug>TranslateRV
 
-" Translate the text in clipboard
+# Translate the text in clipboard
 nmap <silent> <space>tx <Plug>TranslateX
-"""end of config for translators}}}
+###end of config for translators}}}
 
-"""{{{ config for whick-key
+###{{{ config for whick-key
 nnoremap <silent> <space>  :<c-u>WhichKey '<space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
 nnoremap <silent> \        :<c-u>WhichKey '\'<CR>
-"""end of config for which-key}}}
+###end of config for which-key}}}
 
-"""{{{ config for vimtex
-let g:tex_flavor="latex"
-" use vimtex as default compiler
-let g:vimtex_compiler_latexmk_engines={'_':'-xelatex'}
-let g:vimtex_compiler_latexrun_engines={'_':'xelatex'}
+###{{{ config for vimtex
+g:tex_flavor = "latex"
+# use vimtex as default compiler
+g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
+g:vimtex_compiler_latexrun_engines = {'_': 'xelatex'}
 
 if has('win32') || has('win64')
-" 阅读器相关的配置 包含正反向查找功能 仅供参考
-let g:vimtex_view_general_viewer = 'H:/SumatraPDF/SumatraPDF.exe'
-let g:vimtex_view_general_options_latexmk = '-reuse-instance'
-let g:vimtex_view_general_options
-\ = '-reuse-instance -forward-search @tex @line @pdf'
-\ . ' -inverse-search "' . exepath(v:progpath)
-\ . ' --servername ' . v:servername
-\ . ' --remote-send \"^<C-\^>^<C-n^>'
-\ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
-\ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
-\ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+# 阅读器相关的配置 包含正反向查找功能 仅供参考
+    g:vimtex_view_general_viewer = 'H:/SumatraPDF/SumatraPDF.exe'
+    g:vimtex_view_general_options_latexmk = '-reuse-instance'
+    g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+                                    .. ' -inverse-search "' .. exepath(v:progpath)
+                                    .. ' --servername ' .. v:servername
+                                    .. ' --remote-send \"^<C-\^>^<C-n^>'
+                                    .. ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+                                    .. ':\%l^<CR^>:normal\! zzzv^<CR^>'
+                                    .. ':call remote_foreground(''' .. v:servername .. ''')^<CR^>^<CR^>\""'
 else
-" use zathura as the default pdf reviewer
-let g:vimtex_view_method='zathura'
+# use zathura as the default pdf reviewer
+    g:vimtex_view_method = 'zathura'
 endif
 
-" show the compiler hint
-let g:vimtex_quickfix_mode = 1
+# show the compiler hint
+g:vimtex_quickfix_mode = 1
 
-" hide the last two lines
+# hide the last two lines
 set conceallevel=1
 
-let g:tex_conceal='abdmg'
-"""}}}
+g:tex_conceal = 'abdmg'
+###}}}
 
-"""{{{ config for vim-go
-let g:go_echo_go_info = 0
-let g:go_doc_popup_window = 1
-let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 0
-let g:go_textobj_enabled = 0
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_types = 1
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_variable_declarations = 0
-let g:go_doc_keywordprg_enabled = 0
-"""end}}}
+###{{{ config for vim-go
+g:go_echo_go_info = 0
+g:go_doc_popup_window = 1
+g:go_def_mapping_enabled = 0
+g:go_template_autocreate = 0
+g:go_textobj_enabled = 0
+g:go_auto_type_info = 1
+g:go_def_mapping_enabled = 0
+g:go_highlight_array_whitespace_error = 1
+g:go_highlight_build_constraints = 1
+g:go_highlight_chan_whitespace_error = 1
+g:go_highlight_extra_types = 1
+g:go_highlight_fields = 1
+g:go_highlight_format_strings = 1
+g:go_highlight_function_calls = 1
+g:go_highlight_function_parameters = 1
+g:go_highlight_functions = 1
+g:go_highlight_generate_tags = 1
+g:go_highlight_methods = 1
+g:go_highlight_operators = 1
+g:go_highlight_space_tab_error = 1
+g:go_highlight_string_spellcheck = 1
+g:go_highlight_structs = 1
+g:go_highlight_trailing_whitespace_error = 1
+g:go_highlight_types = 1
+g:go_highlight_variable_assignments = 0
+g:go_highlight_variable_declarations = 0
+g:go_doc_keywordprg_enabled = 0
+###end}}}
 
-"""{{{ config for wildfire.vim
-" use '*' to mean 'all other filetypes'
-" in this example, html and xml share the same text objects
-let g:wildfire_objects = {
-    \ "*" : ["i'", "i\"", "i<", "i)", "i]", "i}", "ip", "if", "af"],
-    \ "html,xml,php" : ["at", "it"],
-    \}
-"""}}}
+###{{{ config for wildfire.vim
+# use '*' to mean 'all other filetypes'
+# in this example, html and xml share the same text objects
+g:wildfire_objects = {
+        "*": ["i'", "i\"", "i<", "i)", "i]", "i}", "ip", "if", "af"],
+        "html,xml,php": ["at", "it"],
+    }
+###}}}
 
-"""{{{ config for UndoTree
-let g:undotree_WindowLayout='Layout 2'
+###{{{ config for UndoTree
+g:undotree_WindowLayout = 'Layout 2'
 nnoremap <C-u> :UndotreeShow<CR>:UndotreeFocus<CR>
-"""}}}
+###}}}
 
-""" {{{ config for far
+### {{{ config for far
 nnoremap <LEADER>fr :Farr<CR>
-let g:far#enable_undo = 1
-""" }}}
+g:far#enable_undo = 1
+### }}}
 
-""" {{{ config for Asyncrun/AsynxTasks
+### {{{ config for Asyncrun/AsynxTasks
 au! BufRead,BufNewFile .tasks set ft=dosini
-let g:asyncrun_mode = 'floaterm'
-let g:asyncrun_rootmarkers=['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
-let g:asynctasks_term_pos = 'floaterm'
-let g:asynctasks_extra_config = [
-            \ g:vim_config_prefix.'/tasks.ini',
-            \]
+g:asyncrun_mode = 'floaterm'
+g:asyncrun_rootmarkers = ['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
+g:asynctasks_term_pos = 'floaterm'
+g:asynctasks_extra_config = [
+    g:vim_config_prefix .. '/tasks.ini',
+]
 
 nnoremap <silent><F7> :AsyncTask project-build<CR>
 nnoremap <silent><C-F7> :AsyncTask file-build<CR>
 nnoremap <silent><F6> :AsyncTask project-run<CR>
 nnoremap <silent><C-F6> :AsyncTask file-run<CR>
-""" }}}
+### }}}
 
-""" {{{ config for dashboard-nvim
+### {{{ config for dashboard-nvim
 nmap <space>ss :<C-u>SessionSave<CR>
 nmap <space>sl :<C-u>SessionLoad<CR>
 nnoremap <silent> <space>lh :DashboardFindHistory<CR>
@@ -230,27 +231,27 @@ nnoremap <silent> <space>cc :DashboardChangeColorscheme<CR>
 nnoremap <silent> <space>lw :DashboardFindWord<CR>
 nnoremap <silent> <space>lm :DashboardJumpMark<CR>
 nnoremap <silent> <space>nf :DashboardNewFile<CR>
-let g:dashboard_custom_shortcut={
-      \ 'last_session'       : 'SPC s l',
-      \ 'find_history'       : 'SPC l h',
-      \ 'find_file'          : 'SPC l f',
-      \ 'new_file'           : 'SPC n f',
-      \ 'change_colorscheme' : 'SPC c c',
-      \ 'find_word'          : 'SPC l w',
-      \ 'book_marks'         : 'SPC l m',
-      \ }
-""" }}}
+g:dashboard_custom_shortcut = {
+      'last_session':       'SPC s l',
+      'find_history':       'SPC l h',
+      'find_file':          'SPC l f',
+      'new_file':           'SPC n f',
+      'change_colorscheme': 'SPC c c',
+      'find_word':          'SPC l w',
+      'book_marks':         'SPC l m',
+}
+### }}}
 
-""" {{{ config for vim-clap
+### {{{ config for vim-clap
 nnoremap <silent> <space>lb :Clap buffers<CR>
 nnoremap <silent> <space>ly :Clap yanks<CR>
-""" }}}
+### }}}
 
-""" {{{ config for vim-easy-align
+### {{{ config for vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-""" }}}
+### }}}
 
-""" {{{ config for vim-choosewin
+### {{{ config for vim-choosewin
 nmap - <Plug>(choosewin)
-""" }}}
+### }}}
