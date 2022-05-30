@@ -28,7 +28,7 @@ plug#begin(g:vim_config_prefix .. '/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'WindyValley/dashboard-nvim', {'branch': 'block-packer-nvim-for-vim'} # 2022年5月9日，作者回来合PR的时候我的代码冲突了，没能合进去，fork版本已更新，继续用自己的fork吧
+    Plug 'glepnir/dashboard-nvim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
