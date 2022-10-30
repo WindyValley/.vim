@@ -39,6 +39,7 @@ plug#begin(g:vim_config_prefix .. '/plugged')
     Plug 'voldikss/vim-translator'
     Plug 'tommcdo/vim-exchange'
     Plug 't9md/vim-choosewin'
+    Plug 'lacygoill/vim9-syntax'
 
     ### make it colorful
     Plug 'vim-airline/vim-airline'
@@ -254,4 +255,19 @@ nmap ga <Plug>(EasyAlign)
 
 ### {{{ config for vim-choosewin
 nmap - <Plug>(choosewin)
+### }}}
+
+### {{{ config for lacygoill/vim9-syntax
+g:vim9_syntax = {
+   builtin_functions: true,
+   data_types: false,
+   fenced_languages: ['lua', 'python'],
+   errors: {
+       event_wrong_case: false,
+       octal_missing_o_prefix: false,
+       range_missing_space: false,
+       range_missing_specifier: false,
+       strict_whitespace: true,
+   }
+}
 ### }}}
