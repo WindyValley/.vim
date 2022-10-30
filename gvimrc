@@ -18,6 +18,6 @@ set guioptions-=b
 " 使用内置 tab 样式而不是 gui
 set guioptions-=e
 set listchars=tab:▶\ ,eol:¬,trail:·,extends:>,precedes:<
-set guifont=DejavuSansMono\ NF:h14:cANSI
+set guifont=DejaVuSansMono\ NFM:h14:cANSI
 " }}}
 
