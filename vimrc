@@ -28,7 +28,7 @@ plug#begin(g:vim_config_prefix .. '/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'glepnir/dashboard-nvim'
+    # Plug 'glepnir/dashboard-nvim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
@@ -39,7 +39,6 @@ plug#begin(g:vim_config_prefix .. '/plugged')
     Plug 'voldikss/vim-translator'
     Plug 'tommcdo/vim-exchange'
     Plug 't9md/vim-choosewin'
-    Plug 'lacygoill/vim9-syntax'
 
     ### make it colorful
     Plug 'vim-airline/vim-airline'
@@ -224,23 +223,23 @@ nnoremap <silent><C-F6> :AsyncTask file-run<CR>
 ### }}}
 
 ### {{{ config for dashboard-nvim
-nmap <space>ss :<C-u>SessionSave<CR>
-nmap <space>sl :<C-u>SessionLoad<CR>
-nnoremap <silent> <space>lh :DashboardFindHistory<CR>
-nnoremap <silent> <space>lf :DashboardFindFile<CR>
-nnoremap <silent> <space>cc :DashboardChangeColorscheme<CR>
-nnoremap <silent> <space>lw :DashboardFindWord<CR>
-nnoremap <silent> <space>lm :DashboardJumpMark<CR>
-nnoremap <silent> <space>nf :DashboardNewFile<CR>
-g:dashboard_custom_shortcut = {
-      'last_session':       'SPC s l',
-      'find_history':       'SPC l h',
-      'find_file':          'SPC l f',
-      'new_file':           'SPC n f',
-      'change_colorscheme': 'SPC c c',
-      'find_word':          'SPC l w',
-      'book_marks':         'SPC l m',
-}
+# nmap <space>ss :<C-u>SessionSave<CR>
+# nmap <space>sl :<C-u>SessionLoad<CR>
+# nnoremap <silent> <space>lh :DashboardFindHistory<CR>
+# nnoremap <silent> <space>lf :DashboardFindFile<CR>
+# nnoremap <silent> <space>cc :DashboardChangeColorscheme<CR>
+# nnoremap <silent> <space>lw :DashboardFindWord<CR>
+# nnoremap <silent> <space>lm :DashboardJumpMark<CR>
+# nnoremap <silent> <space>nf :DashboardNewFile<CR>
+# g:dashboard_custom_shortcut = {
+#       'last_session':       'SPC s l',
+#       'find_history':       'SPC l h',
+#       'find_file':          'SPC l f',
+#       'new_file':           'SPC n f',
+#       'change_colorscheme': 'SPC c c',
+#       'find_word':          'SPC l w',
+#       'book_marks':         'SPC l m',
+# }
 ### }}}
 
 ### {{{ config for vim-clap
@@ -255,19 +254,4 @@ nmap ga <Plug>(EasyAlign)
 
 ### {{{ config for vim-choosewin
 nmap - <Plug>(choosewin)
-### }}}
-
-### {{{ config for lacygoill/vim9-syntax
-g:vim9_syntax = {
-   builtin_functions: true,
-   data_types: false,
-   fenced_languages: ['lua', 'python'],
-   errors: {
-       event_wrong_case: false,
-       octal_missing_o_prefix: false,
-       range_missing_space: false,
-       range_missing_specifier: false,
-       strict_whitespace: true,
-   }
-}
 ### }}}
