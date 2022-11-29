@@ -62,7 +62,7 @@ set smartcase
 exec "nohlsearch"
 
 " Lang & Encoding {{{
-set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936,latin1,utf-16le
 set encoding=utf-8
 set langmenu=zh_CN
 let $LANG = 'zh_CN.UTF-8'
