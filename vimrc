@@ -70,6 +70,7 @@ g:floaterm_keymap_prev   = '<space>fp'
 g:floaterm_keymap_next   = '<space>fn'
 g:floaterm_keymap_toggle = '<space>ft'
 g:floaterm_position      = 'center'
+g:floaterm_giteditor     = 0
 ###end of config with Floaterm}}}
 
 ###{{{ config for lines(bufferline & airline)

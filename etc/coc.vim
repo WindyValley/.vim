@@ -7,6 +7,10 @@ endif
 # Use tab for trigger completion with characters ahead and navigate.
 # NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 # other plugin before putting this into your config.
+def CheckBackSpace(): bool
+  var col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+enddef
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>CheckBackSpace() ? "\<TAB>" :
@@ -15,10 +19,6 @@ inoremap <expr><S-TAB>
       \ pumvisible() ? "\<C-p>" :
       \ <SID>CheckBackSpace() ? "\<C-h>" :
       \ "\<TAB>"
-def CheckBackSpace(): bool
-  var col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-enddef
 
 # Use <CR> to confirm completion, `<C-g>u` means break undo chain at current
 # position. Coc only does snippet and additional edit on confirm.
