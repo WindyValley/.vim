@@ -12,22 +12,18 @@ def CheckBackSpace(): bool
   return !col || getline('.')[col - 1]  =~# '\s'
 enddef
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
       \ <SID>CheckBackSpace() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB>
-      \ pumvisible() ? "\<C-p>" :
+      \ coc#pum#visible() ? coc#pum#prev(1) :
       \ <SID>CheckBackSpace() ? "\<C-h>" :
       \ "\<TAB>"
 
-# Use <CR> to confirm completion, `<C-g>u` means break undo chain at current
-# position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  # Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+# Make <CR> to accept selected completion item or notify coc.nvim to format
+# <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 # Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -43,13 +39,13 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 
 def ShowDocumentation()
-  if (index(['vim', 'help'], &filetype) >= 0)
-    execute 'h ' .. expand('<cword>')
-  elseif (coc#rpc#ready())
-    g:CocAction('doHover')
-  else
-    execute '!' .. &keywordprg .. " " .. expand('<cword>')
-  endif
+    if index(['vim', 'help'], &filetype) >= 0
+        execute 'h ' .. expand('<cword>')
+    elseif g:CocAction('hasProvider', 'hover')
+        g:CocActionAsync('doHover')
+    else
+        feedkeys('K', 'in')
+    endif
 enddef
 
 # Highlight the symbol and its references when holding the cursor.
