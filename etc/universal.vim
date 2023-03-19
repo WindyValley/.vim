@@ -102,9 +102,6 @@ augroup filetype
   au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
 
-" In Makefiles, don't expand tabs to spaces, since we need the actual tabs
-autocmd FileType make set noexpandtab
-
 au FileType vim setlocal foldmethod=marker
 
 if has('win32') || has ('win64')
