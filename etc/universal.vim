@@ -103,6 +103,16 @@ augroup filetype
   au! BufRead,BufNewFile *Makefile* set filetype=make
 augroup END
 
+function! NewEmptyBuffer()
+    enew
+    setlocal buftype=nofile
+    setlocal bufhidden=wipe
+    bn
+endfunction
+augroup NoFileNameBuffer
+    au!
+    autocmd VimEnter * call NewEmptyBuffer()
+augroup END
 au FileType vim setlocal foldmethod=marker
 
 if has('win32') || has ('win64')

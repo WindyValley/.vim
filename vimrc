@@ -50,6 +50,7 @@ if !empty(glob(g:vim_config_prefix .. '/_machine_different.vim/dependonplug.vim'
     execute 'so ' .. g:vim_config_prefix .. '/_machine_different.vim/dependonplug.vim'
 endif
 execute 'so ' .. g:vim_config_prefix .. '/etc/coc.vim'
+execute 'so ' .. g:vim_config_prefix .. '/etc/tools.vim'
 
 ### {{{ config for Vista.vim
 noremap <c-t> :silent! Vista finder coc<CR>

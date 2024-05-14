@@ -56,4 +56,11 @@ map <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
 nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
+" 开关相对行号
+noremap <leader>rn :set relativenumber!<CR>
+if has('gui')
+    " 仿 Terminal Tab 操作
+    noremap <C-S-T> :tabnew<CR>
+    noremap <C-S-W> :tabclose<CR>
+endif
 " }}}
