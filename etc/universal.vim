@@ -45,9 +45,10 @@ set nowritebackup
 
 " undo文件设置
 if has("persistent_undo")
-    set undodir=~/.cache/vim/undo'
+    set undodir=~/.cache/vim/undo
     set undofile
 endif
+set directory=~/.cache/vim/swap
 
 " Status/command bar
 set laststatus=2
@@ -62,7 +63,7 @@ set smartcase
 exec "nohlsearch"
 
 " Lang & Encoding {{{
-set fileencodings=utf-8,ucs-bom,gbk2312,gbk,gb18030,cp936,latin1,utf-16le
+set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,latin1,utf-16le
 set encoding=utf-8
 set langmenu=zh_CN
 let $LANG = 'zh_CN.UTF-8'
