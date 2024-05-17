@@ -14,7 +14,10 @@ set whichwrap=b,s,<,>,[,]
 set nobomb
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 " Vim 的默认寄存器和系统剪贴板共享, 推荐使用"+y因为vim里删除的内容也会写入剪切板
-" set clipboard+=unnamed 
+" set clipboard+=unnamed
 " 设置 alt 键不映射到菜单栏
 set winaltkeys=no
+set iminsert=2
+set imcmdline
+set imsearch=-1
 " }}}
